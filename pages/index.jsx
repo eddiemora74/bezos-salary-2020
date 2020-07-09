@@ -2,6 +2,8 @@ import Head from "next/head";
 import useSWR from "swr";
 import NumberFormat from "react-number-format";
 
+const pageLoad = new Date().getTime() / 1000;
+
 export default function Home() {
   const { data: salary } = useSWR(
     "getPaid",
@@ -10,7 +12,10 @@ export default function Home() {
       const string2020 = "2020-01-01 00:00:00";
       const now = new Date().getTime() / 1000;
       const start = new Date(string2020).getTime() / 1000;
-      return (now - start) * multiplier;
+      return {
+        total: (now - start) * multiplier,
+        accrued: (now - pageLoad) * multiplier,
+      };
     },
     { refreshInterval: 1000 }
   );
@@ -26,7 +31,7 @@ export default function Home() {
         <h1>How much money has Jeff Bezos made in 2020?</h1>
         <h2 style={{ marginTop: "15px", color: "red" }}>
           <NumberFormat
-            value={salary}
+            value={salary ? salary.total : 0}
             displayType={"text"}
             thousandSeparator={true}
             prefix={"$"}
@@ -44,6 +49,18 @@ export default function Home() {
             this article
           </a>
           , Jeff Bezos is making roughly $2,489 <em>per second</em>.
+        </p>
+        <p className="mt-5">
+          <em>Since loading this page?</em>
+        </p>
+        <p style={{ color: "red" }}>
+          <NumberFormat
+            value={salary ? salary.accrued : 0}
+            displayType={"text"}
+            thousandSeparator={true}
+            prefix={"$"}
+            decimalScale={2}
+          />
         </p>
         <small>As of {new Date().toLocaleString()}</small>
       </main>
