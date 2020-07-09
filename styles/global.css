@@ -10,4 +10,7 @@ main {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  border-radius: 15px;
+  background: rgb(0,0,0,0.5);
+  padding: 15px;
 }
