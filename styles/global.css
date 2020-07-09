@@ -1,0 +1,13 @@
+body {
+  background: linear-gradient(rgb(0,0,0, 0.6), rgb(0,0,0, 0.6)), url("/bezos_full.jpg") center no-repeat;
+  height: 100vh;
+  color: white;
+}
+
+main {
+  position: absolute;
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
