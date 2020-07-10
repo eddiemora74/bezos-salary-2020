@@ -29,13 +29,20 @@ export default function Home() {
 
       <main className="text-center">
         <h1>How much money has Jeff Bezos made in 2020?</h1>
-        <h2 style={{ marginTop: "15px", color: "red" }}>
+        <h2
+          style={{
+            marginTop: "15px",
+            color: "red",
+            fontFamily: "Lucida Console, Monaco, monospace",
+          }}
+        >
           <NumberFormat
             value={salary ? salary.total : 0}
             displayType={"text"}
             thousandSeparator={true}
             prefix={"$"}
             decimalScale={2}
+            fixedDecimalScale={true}
           />
         </h2>
 
@@ -53,13 +60,19 @@ export default function Home() {
         <p className="mt-5">
           <em>Since loading this page?</em>
         </p>
-        <p style={{ color: "red" }}>
+        <p
+          style={{
+            color: "red",
+            fontFamily: "Lucida Console, Monaco, monospace",
+          }}
+        >
           <NumberFormat
             value={salary ? salary.accrued : 0}
             displayType={"text"}
             thousandSeparator={true}
             prefix={"$"}
             decimalScale={2}
+            fixedDecimalScale={true}
           />
         </p>
         <small>As of {new Date().toLocaleString()}</small>
